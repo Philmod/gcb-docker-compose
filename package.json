@@ -1,0 +1,19 @@
+{
+  "name": "gcb-docker-compose",
+  "version": "0.0.1",
+  "description": "Example on how to use docker-compose to run integration tests on your latest build",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Philmod/gcb-docker-compose.git"
+  },
+  "dependencies": {
+    "grpc": "^1.2.0",
+    "redis": "^2.7.1"
+  },
+  "author": "Philmod <philippe.modard@gmail.com>",
+  "license": "Apache-2.0"
+}

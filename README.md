@@ -1,2 +1,2 @@
 # gcb-docker-compose
-Example on using docker-compose to run integration tests on your latest build
+Example on how to use docker-compose to run integration tests on your latest build
