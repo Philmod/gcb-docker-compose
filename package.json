@@ -4,7 +4,10 @@
   "description": "Example on how to use docker-compose to run integration tests on your latest build",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "node_modules/.bin/mocha --reporter spec test/*",
+    "test:unit": "node_modules/.bin/mocha --reporter spec test/unit_test.js",
+    "test:integration": "node_modules/.bin/mocha --reporter spec test/integration_test.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +18,9 @@
     "redis": "^2.7.1"
   },
   "author": "Philmod <philippe.modard@gmail.com>",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "should": "^11.2.1"
+  }
 }

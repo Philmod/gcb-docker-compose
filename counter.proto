@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package counter;
+
+service CounterService {
+  rpc Add(CounterValue) returns (CounterValue) {}
+  rpc Reset(Empty) returns (CounterValue) {}
+  rpc Get(Empty) returns (CounterValue) {}
+  rpc Watch(Empty) returns (stream CounterValue) {}
+}
+
+message CounterValue {
+  int32 count = 0;
+}
+
+message Empty {}
