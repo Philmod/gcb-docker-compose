@@ -7,7 +7,7 @@ steps:
   args: ['build', '-t', 'gcr.io/$PROJECT_ID/gcb-docker-compose:latest', '.']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/$PROJECT_ID/gcb-docker-compose:latest']
-- name: 'docker/compose'
+- name: 'docker/compose:1.11.2'
   args: ['up']
 - name: 'gcr.io/cloud-builders/npm'
   args: ['run', 'test:integration']
