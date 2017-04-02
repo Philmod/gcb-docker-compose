@@ -1,5 +1,9 @@
 FROM zzrot/alpine-node
 
+# Need libc6-compat for grpc on alpine.
+RUN apk update && \
+    apk add libc6-compat
+
 ENV NODE_ENV production
 ENV PORT 50051
 
