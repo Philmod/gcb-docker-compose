@@ -7,7 +7,7 @@
     "start": "node index.js",
     "test": "npm run test:unit",
     "test:unit": "NODE_ENV=test node_modules/.bin/mocha --reporter spec test/unit_test.js",
-    "test:integration": "NODE_ENV=test PORT=50051 node_modules/.bin/mocha --reporter spec test/integration_test.js"
+    "test:integration": "PORT=50051 node_modules/.bin/mocha --reporter spec test/integration_test.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "async": "^2.2.0",
+    "fakeredis": "^2.0.0",
     "mocha": "^3.2.0",
     "should": "^11.2.1"
   }
