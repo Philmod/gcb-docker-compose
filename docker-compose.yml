@@ -3,3 +3,5 @@ counter:
   restart: always
   environment:
     PORT: 50051
+  ports:
+    - "50051:50051"
