@@ -28,7 +28,7 @@ let server = new grpc.Server();
 const add = (call, callback) => {
   redisClient.incrby(counterRedisKey, call.request.count, (err, counter) => {
     callback(err, {
-      count: counter
+      count: parseInt(counter),
     });
   });
 };
@@ -44,7 +44,7 @@ const reset = (call, callback) => {
 const get = (call, callback) => {
   redisClient.get(counterRedisKey, (err, counter) => {
     callback(err, {
-      count: counter
+      count: parseInt(counter),
     });
   });
 };
