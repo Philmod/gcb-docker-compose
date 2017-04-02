@@ -40,11 +40,10 @@ const methods = {
   get: get,
 };
 
-server.addProtoService(counterProto.counter.CounterService.service, methods);
-server.bind('0.0.0.0:' + PORT, grpc.ServerCredentials.createInsecure());
-server.start();
-
-module.exports = {
-  server: server,
-  methods: methods,
-};
+if (NODE_ENV === 'test') {
+  module.exports = methods;
+} else {
+  server.addProtoService(counterProto.counter.CounterService.service, methods);
+  server.bind('0.0.0.0:' + PORT, grpc.ServerCredentials.createInsecure());
+  server.start();
+}

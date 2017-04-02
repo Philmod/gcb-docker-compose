@@ -1,5 +1,5 @@
 const should = require('should');
-const methods = require('../index.js').methods;
+const methods = require('../index.js');
 
 describe('unit tests', () => {
 
