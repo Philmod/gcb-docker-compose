@@ -15,10 +15,9 @@ describe('integration tests', () => {
     // Create a grpc client.
     // This assumes that the server is running.
     client = new counterProto.counter.CounterService(
-      'localhost:' + PORT,
+      '0.0.0.0:' + PORT,
       grpc.credentials.createInsecure()
     );
-    console.log('yo : ', client);
   });
 
   it('should reset, then add to the counter', (done) => {
@@ -33,6 +32,7 @@ describe('integration tests', () => {
         client.get({}, (err, res) => {
           should.not.exist(err);
           res.count.should.equal(1);
+          callback();
         });
       }
     }, done);
