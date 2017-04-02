@@ -1,0 +1,5 @@
+counter:
+  image: gcr.io/node-example-gke/gcb-docker-compose:latest
+  restart: always
+  environment:
+    PORT: 50051
