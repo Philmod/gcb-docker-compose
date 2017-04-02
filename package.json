@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "node_modules/.bin/mocha --reporter spec test/*",
+    "test": "npm run test:unit",
     "test:unit": "node_modules/.bin/mocha --reporter spec test/unit_test.js",
     "test:integration": "node_modules/.bin/mocha --reporter spec test/integration_test.js"
   },
@@ -20,6 +20,7 @@
   "author": "Philmod <philippe.modard@gmail.com>",
   "license": "Apache-2.0",
   "devDependencies": {
+    "async": "^2.2.0",
     "mocha": "^3.2.0",
     "should": "^11.2.1"
   }
