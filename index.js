@@ -8,8 +8,8 @@ const PORT = process.env.PORT || 50051;
 // Redis client.
 const createRedisClient = (env) => {
   const opts = {
-    host: process.env.REDIS_PORT_6379_TCP_ADDR || '127.0.0.1',
-    port: process.env.REDIS_PORT_6379_TCP_PORT || 6379
+    host: process.env.REDIS_HOST || '127.0.0.1',
+    port: process.env.REDIS_PORT || 6379
   };
   if (env === 'test') {
     return require('fakeredis').createClient(opts);
