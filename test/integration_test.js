@@ -3,9 +3,12 @@ const grpc = require('grpc');
 const should = require('should');
 const async = require('async');
 
+const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 50051;
 const PROTO_PATH = path.join(__dirname, '..', 'counter.proto');
 const counterProto = grpc.load(PROTO_PATH);
+
+console.log('--> ', HOST, PORT);
 
 describe('integration tests', () => {
 
@@ -15,7 +18,7 @@ describe('integration tests', () => {
     // Create a grpc client.
     // This assumes that the server is running.
     client = new counterProto.counter.CounterService(
-      '0.0.0.0:' + PORT,
+      HOST + ':' + PORT,
       grpc.credentials.createInsecure()
     );
   });

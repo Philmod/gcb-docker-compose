@@ -3,13 +3,22 @@ steps:
   args: ['install']
 - name: 'gcr.io/cloud-builders/npm'
   args: ['run', 'test:unit']
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/gcb-docker-compose:latest', '.']
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ['build', '-t', 'gcr.io/$PROJECT_ID/gcb-docker-compose:latest', '.']
 - name: 'docker/compose:1.11.2'
   args: ['up', '-d']
 - name: 'docker/compose:1.11.2'
   args: ['ps']
 - name: 'gcr.io/cloud-builders/npm'
-  args: ['run', 'test:integration']
+  entrypoint: 'bash'
+  env:
+  - HOST=$(netstat -nr | grep '^0\.0\.0\.0' | awk '{print $2}')
+  args:
+  - '-c'
+  - |
+    apt-get update && apt-get install net-tools
+    export HOST=$(netstat -nr | grep '^0\.0\.0\.0' | awk '{print $2}')
+    echo $$HOST
+    npm run test:integration
 
 images: ['gcr.io/$PROJECT_ID/gcb-docker-compose:latest']

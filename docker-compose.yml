@@ -1,6 +1,5 @@
 counter:
   image: gcr.io/node-example-gke/gcb-docker-compose:latest
-  restart: always
   links:
     - redis
   ports:
@@ -8,6 +7,5 @@ counter:
 
 redis:
   image: redis
-  restart: always
   ports:
     - "6379"
