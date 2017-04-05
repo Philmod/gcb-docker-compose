@@ -1,5 +1,18 @@
-counter:
-  image: gcr.io/node-example-gke/gcb-docker-compose:latest
-  restart: always
-  ports:
-    - "50051:50051"
+version: '2'
+
+services:
+
+  counter:
+    image: gcr.io/node-example-gke/gcb-docker-compose:latest
+    depends_on:
+      - redis
+    ports:
+      - "50051:50051"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
