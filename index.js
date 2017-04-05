@@ -25,8 +25,10 @@ const counterProto = grpc.load(PROTO_PATH);
 let server = new grpc.Server();
 
 // Methods.
+let counterStream;
 const add = (call, callback) => {
   redisClient.incrby(counterRedisKey, call.request.count, (err, counter) => {
+    counterStream && counterStream.write(parseInt(counter));
     callback(err, {
       count: parseInt(counter),
     });
@@ -35,6 +37,7 @@ const add = (call, callback) => {
 
 const reset = (call, callback) => {
   redisClient.set(counterRedisKey, 0, (err, counter) => {
+    counterStream && counterStream.write(0);
     callback(err, {
       count: 0
     });
@@ -49,10 +52,15 @@ const get = (call, callback) => {
   });
 };
 
+const watch = (stream) => {
+  counterStream = stream;
+};
+
 const methods = {
   add: add,
   reset: reset,
   get: get,
+  watch: watch,
 };
 
 // Start grpc server.
