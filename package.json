@@ -4,10 +4,10 @@
   "description": "Example on how to use docker-compose to run integration tests on your latest build",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node main.js",
     "test": "npm run test:unit",
-    "test:unit": "NODE_ENV=test node_modules/.bin/mocha --reporter spec test/unit_test.js",
-    "test:integration": "PORT=50051 node_modules/.bin/mocha --reporter spec test/integration_test.js"
+    "test:unit": "node_modules/.bin/mocha --reporter spec test/unit_test.js",
+    "test:integration": "node_modules/.bin/mocha --reporter spec test/integration_test.js"
   },
   "repository": {
     "type": "git",
