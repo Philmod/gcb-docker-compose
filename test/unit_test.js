@@ -1,7 +1,17 @@
 const should = require('should');
-const methods = require('../index.js');
+const Counter = require('../counter.js');
+const redis = require('fakeredis');
 
-describe('unit tests', () => {
+describe('counter', () => {
+
+  let counter;
+
+  before(() => {
+    counter = Counter({
+      redisClient: redis.createClient(),
+      counterRedisKey: 'counterRedisKey',
+    });
+  })
 
   describe('reset', () => {
 
@@ -11,11 +21,11 @@ describe('unit tests', () => {
           count: 1
         }
       };
-      methods.add(call, done);
+      counter.add(call, done);
     });
 
     it('should reset the counter', (done) => {
-      methods.reset(null, (err, res) => {
+      counter.reset(null, (err, res) => {
         should.not.exist(err);
         res.count.should.equal(0);
         done();
@@ -27,7 +37,7 @@ describe('unit tests', () => {
   describe('Add', () => {
 
     beforeEach(done => {
-      methods.reset(null, done);
+      counter.reset(null, done);
     });
 
     it('should increment the counter', (done) => {
@@ -36,7 +46,7 @@ describe('unit tests', () => {
           count: 1
         }
       };
-      methods.add(call, (err, res) => {
+      counter.add(call, (err, res) => {
         should.not.exist(err);
         res.count.should.equal(1);
         done();
@@ -49,7 +59,7 @@ describe('unit tests', () => {
           count: -1
         }
       };
-      methods.add(call, (err, res) => {
+      counter.add(call, (err, res) => {
         should.not.exist(err);
         res.count.should.equal(-1);
         done();
