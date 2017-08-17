@@ -1,13 +1,28 @@
 steps:
+# Install dependencies.
 - name: 'gcr.io/cloud-builders/npm'
   args: ['install']
+
+# Unit test.
 - name: 'gcr.io/cloud-builders/npm'
   args: ['run', 'test:unit']
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/gcb-docker-compose:latest', '.']
-- name: 'docker/compose:1.11.2'
-  args: ['up', '-d']
-# - name: 'gcr.io/cloud-builders/npm'
-#   args: ['run', 'test:integration']
 
-images: ['gcr.io/$PROJECT_ID/gcb-docker-compose:latest']
+# Build the new docker image.
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/node-example-gke/gcb-docker-compose:latest', '.']
+
+# Run the app and dependencies in the background using docker-compose.
+# Warning: this won't be cleaned up, which might be an issue if you run it
+# with the local builder.
+- name: 'docker/compose:1.15.0'
+  args: ['up', '-d']
+
+# Run the integration tests against the running docker-compose stack.
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['run', 'test:integration']
+  env:
+  - 'HOST=counter' # running container, name defined in the docker-compose.yml
+  - 'PORT=50051'
+
+# Push the new image to the registry.
+images: ['gcr.io/node-example-gke/gcb-docker-compose:latest']

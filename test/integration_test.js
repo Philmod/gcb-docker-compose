@@ -49,7 +49,7 @@ describe('integration tests', () => {
     // want is the wanted sequence of counter.
     // the last 0 is for the afterEach reset.
     const want = [2, -1, 0];
-    
+
     let i = 0;
     stream.on('data', (got) => {
       got.count.should.equal(want[i]);
