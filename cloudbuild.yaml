@@ -7,7 +7,18 @@ steps:
   args: ['build', '-t', 'gcr.io/$PROJECT_ID/gcb-docker-compose:latest', '.']
 - name: 'docker/compose:1.11.2'
   args: ['up', '-d']
-# - name: 'gcr.io/cloud-builders/npm'
-#   args: ['run', 'test:integration']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['network', 'ls']
+- name: 'ubuntu'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    apt-get update
+    apt-get install -y curl
+    curl http://cloudbuild:8080 || curl localhost:8080 || curl http://localhost:8080
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['run', 'test:integration']
+  env: ['HOST=localhost']
 
 images: ['gcr.io/$PROJECT_ID/gcb-docker-compose:latest']
