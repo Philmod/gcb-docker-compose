@@ -4,6 +4,7 @@ services:
 
   counter:
     image: gcr.io/node-example-gke/gcb-docker-compose:latest
+    container_name: counter
     depends_on:
       - redis
     ports:

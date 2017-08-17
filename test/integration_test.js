@@ -8,8 +8,6 @@ const PORT = process.env.PORT || 50051;
 const PROTO_PATH = path.join(__dirname, '..', 'counter.proto');
 const counterProto = grpc.load(PROTO_PATH);
 
-console.log("--> YO: ", HOST, PORT)
-
 describe('integration tests', () => {
 
   let client;
