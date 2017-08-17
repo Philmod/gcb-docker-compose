@@ -3,7 +3,7 @@ version: '2'
 services:
 
   counter:
-    image: gcr.io/node-example-gke/gcb-docker-compose:latest
+    image: gcr.io/${PROJECT_ID}/gcb-docker-compose:latest
     container_name: counter
     depends_on:
       - redis
