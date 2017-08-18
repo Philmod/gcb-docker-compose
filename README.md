@@ -7,18 +7,18 @@ This sample application is a simple counter gRPC server with `add`, `reset`,
 `get`, and `watch` methods. The application uses [Redis](https://redis.io/) for
 storage.
 
-## What is GCB?
+## What is Container Builder?
 
 [Container Builder](https://cloud.google.com/container-builder/) is a Google
-Cloud Platform service uploads your source code and executes your build in a
-series of build steps. Container Builder can produce any artifacts produced
-by your application. For example, Container Builder can create
-[Docker container images](https://www.docker.com/), and push them to a private
+Cloud Platform service that uploads your source code and executes your build
+in a series of build steps. GCB can produce any artifacts produced by your
+application. For example, GCB can create
+[Docker container images](https://www.docker.com/) and push them to a private
 registry, such as
 [Google Container Registry](https://cloud.google.com/container-registry/)
 
 Each build step is run in its container on the same local network. This allows
-build steps to communicate with each other and shared data.
+build steps to communicate with each other and share data.
 
 The ability to communicate and share data between build steps is used in this
 example repository: one build step runs the `counter` app and its dependencies
@@ -38,4 +38,4 @@ the following instructions:
 1. Build the Docker image of the `counter` application
 1. In the background, start a stack with the newly-built application and its dependencies
 1. Run the integration tests against this running stack
-1. Push the newly built and tested image to the registry
+1. Push the newly-built and tested image to the registry
