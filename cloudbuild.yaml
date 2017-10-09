@@ -23,7 +23,7 @@ steps:
 - name: 'gcr.io/cloud-builders/npm'
   args: ['run', 'test:integration']
   env:
-  - 'HOST=counter' # running container, name defined in the docker-compose.yml
+  - 'HOST=counter' # running container, container_name defined in the docker-compose.yml
   - 'PORT=50051'
 
 # Push the new image to the registry.
