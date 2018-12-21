@@ -1,15 +1,15 @@
 # gcb-docker-compose
 
 `gcb-docker-compose` demonstrates how to run integration tests on Google Cloud
-Container Builder (GCB) using `docker-compose`.
+Build (GCB) using `docker-compose`.
 
 This sample application is a simple counter gRPC server with `add`, `reset`,
 `get`, and `watch` methods. The application uses [Redis](https://redis.io/) for
 storage.
 
-## What is Container Builder?
+## What is Cloud Build?
 
-[Container Builder](https://cloud.google.com/container-builder/) is a Google
+[Cloud Build](https://cloud.google.com/cloud-build/) is a Google
 Cloud Platform service that uploads your source code and executes your build
 in a series of build steps. GCB can produce any artifacts produced by your
 application. For example, GCB can create
